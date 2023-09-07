@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SplashScreen from 'react-native-splash-screen';
 import Login from './src/screen/Login';
 import Register from './src/screen/Register';
 import Home from './src/screen/Home';
@@ -13,6 +14,9 @@ import Detail from './src/screen/Detail';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Search from './src/screen/Search';
+import AddRecipe from './src/screen/AddRecipe';
+import EditRecipe from './src/screen/EditRecipe';
+import EditUser from './src/screen/EditUser';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,6 +41,14 @@ function HomeTabs() {
         }}
       />
       <Tab.Screen
+        name="AddTab"
+        component={AddRecipe}
+        options={{
+          tabBarShowLabel: false,
+          tabBarIcon: () => <Icon name="plus" size={25} />,
+        }}
+      />
+      <Tab.Screen
         name="ProfileTab"
         component={Profile}
         options={{
@@ -49,10 +61,13 @@ function HomeTabs() {
 }
 
 function App() {
+  React.useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Register"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
@@ -63,6 +78,9 @@ function App() {
         <Stack.Screen name="LikedRecipe" component={LikedRecipe} />
         <Stack.Screen name="Detail" component={Detail} />
         <Stack.Screen name="Search" component={HomeTabs} />
+        <Stack.Screen name="AddRecipe" component={HomeTabs} />
+        <Stack.Screen name="EditRecipe" component={EditRecipe} />
+        <Stack.Screen name="EditUser" component={EditUser} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -11,6 +11,7 @@ const authReducer = (state = InitialState, {type, payload}) => {
   switch (type) {
     case 'LOGIN_REQUEST':
     case 'REGISTER_REQUEST':
+    case 'UPDATE_PROFILE_REQUEST':
       return {
         ...state,
         isLoading: true,
@@ -19,6 +20,7 @@ const authReducer = (state = InitialState, {type, payload}) => {
       };
     case 'LOGIN_SUCCESS':
     case 'REGISTER_SUCCESS':
+    case 'UPDATE_PROFILE_SUCCESS':
       return {
         ...state,
         isLoading: false,
@@ -28,6 +30,7 @@ const authReducer = (state = InitialState, {type, payload}) => {
       };
     case 'LOGIN_ERROR':
     case 'REGISTER_ERROR':
+    case 'UPDATE_PROFILE_ERROR':
       return {
         ...state,
         isLoading: false,

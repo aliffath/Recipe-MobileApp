@@ -26,7 +26,7 @@ const Detail = () => {
       />
       <ImageBackground source={{uri: image}} style={{flex: 1}}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('HomeTab')}
           style={styles.arrow}>
           <Icon name="arrow-left" size={20} color="white" />
         </TouchableOpacity>

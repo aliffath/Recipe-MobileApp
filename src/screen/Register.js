@@ -26,10 +26,10 @@ const Register = () => {
     state => state.authReducer,
   );
 
-  const handleRegister = () => {
+  const handleRegister = async event => {
+    event.preventDefault();
     dispatch(postRegister(name, email, password));
-  };
-  useEffect(() => {
+
     if (isError) {
       ToastAndroid.showWithGravityAndOffset(
         messageError,
@@ -38,13 +38,9 @@ const Register = () => {
         25,
         50,
       );
-    }
-  }, [isError, messageError]);
-
-  useEffect(() => {
-    if (isSuccess) {
+    } else if (isSuccess) {
       ToastAndroid.showWithGravityAndOffset(
-        'Register successful!',
+        'Registration successful!',
         ToastAndroid.SHORT,
         ToastAndroid.BOTTOM,
         25,
@@ -52,7 +48,7 @@ const Register = () => {
       );
       navigation.navigate('Login');
     }
-  }, [isSuccess, navigation]);
+  };
 
   return (
     <View style={styles.container}>

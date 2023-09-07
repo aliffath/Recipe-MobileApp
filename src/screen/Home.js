@@ -42,14 +42,13 @@ const Home = () => {
             Authorization: `Bearer ${login.data.token}`,
           },
           params: {
-            limit: 5,
+            limit: 100,
             searchBY: 'title',
             search: searchQuery,
           },
         },
       );
       setGetRecipe(getDataRecipe.data.data);
-      console.log(getDataRecipe.data.data);
     } catch (error) {
       console.log(error);
     }

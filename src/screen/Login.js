@@ -25,10 +25,10 @@ const Login = () => {
     state => state.authReducer,
   );
 
-  const handleLogin = () => {
+  const handleLogin = async event => {
+    event.preventDefault();
     dispatch(postlogin(email, password));
-  };
-  useEffect(() => {
+
     if (isError) {
       ToastAndroid.showWithGravityAndOffset(
         messageError,
@@ -37,11 +37,7 @@ const Login = () => {
         25,
         50,
       );
-    }
-  }, [isError, messageError]);
-
-  useEffect(() => {
-    if (isSuccess) {
+    } else if (isSuccess) {
       ToastAndroid.showWithGravityAndOffset(
         'Login successful!',
         ToastAndroid.SHORT,
@@ -49,9 +45,12 @@ const Login = () => {
         25,
         50,
       );
-      navigation.navigate('Home');
+
+      setTimeout(() => {
+        navigation.navigate('Home');
+      }, 2000);
     }
-  }, [isSuccess, navigation]);
+  };
 
   return (
     <View style={styles.container}>

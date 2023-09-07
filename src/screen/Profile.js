@@ -11,14 +11,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../storages/action/auth';
 
 function Profile() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const credential = useSelector(state => state.authReducer);
   const handleLogout = () => {
     setModalVisible(false);
 
@@ -32,7 +32,7 @@ function Profile() {
       <View
         style={{justifyContent: 'center', alignItems: 'center', flex: 1 / 2}}>
         <Image
-          source={require('../assets/woman.jpg')}
+          source={{uri: credential.data?.dataUser?.photo}}
           style={{width: 100, height: 100, borderRadius: 100 / 2}}
         />
         <Text
@@ -42,7 +42,7 @@ function Profile() {
             marginTop: 10,
             color: 'white',
           }}>
-          Women
+          {credential.data?.dataUser?.name}
         </Text>
       </View>
       <View
@@ -57,7 +57,7 @@ function Profile() {
           <Icon name="user" size={20} color="#EEC302" />
           <Text style={{paddingLeft: 10}}>Edit Profile</Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate('EditProfile')}
+            onPress={() => navigation.navigate('EditUser')}
             style={{justifyContent: 'center', alignItems: 'flex-end', flex: 1}}>
             <Icon name="chevron-right" size={20} color="#8B8A8F" />
           </TouchableOpacity>
