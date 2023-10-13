@@ -83,7 +83,7 @@ const EditUser = () => {
       ToastAndroid.show('Berhasil memperbarui Profile', ToastAndroid.SHORT);
 
       setTimeout(() => {
-        navigation.navigate('Login');
+        navigation.navigate('ProfileTab');
       }, 2000);
     } catch (error) {
       console.log(error);
