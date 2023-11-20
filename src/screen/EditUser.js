@@ -80,10 +80,13 @@ const EditUser = () => {
       }
 
       await dispatch(updateProfile(formData, id));
-      ToastAndroid.show('Berhasil memperbarui Profile', ToastAndroid.SHORT);
+      ToastAndroid.show(
+        'Berhasil memperbarui Profile,Silahkan Login Kembali',
+        ToastAndroid.SHORT,
+      );
 
       setTimeout(() => {
-        navigation.navigate('ProfileTab');
+        navigation.navigate('Login');
       }, 2000);
     } catch (error) {
       console.log(error);
